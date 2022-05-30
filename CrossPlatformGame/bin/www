@@ -14,7 +14,11 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+<<<<<<< HEAD
 console.log('启动在:http://localhost:' + port);
+=======
+
+>>>>>>> 946ba69aa7bf59bdd83b9ce8b226ee056839f5a3
 /**
  * Create HTTP server.
  */
