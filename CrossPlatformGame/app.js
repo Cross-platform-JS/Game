@@ -1,63 +1,93 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-<<<<<<< HEAD
-var hbs = require('hbs');
-// var ejs = require('ejs');
-var bodyParser = require('body-parser');
-=======
+// var createError = require('http-errors');
+// var express = require('express');
+// var path = require('path');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
+// var hbs = require('hbs');
+// // var ejs = require('ejs');
+// var bodyParser = require('body-parser');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
->>>>>>> 946ba69aa7bf59bdd83b9ce8b226ee056839f5a3
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var app = express();
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-<<<<<<< HEAD
-// app.set('view engine', 'jade');
-app.set('view engine', 'html');
-app.engine('html', hbs.__express);
-// app.engine('.html',ejs._express);
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// // app.set('view engine', 'jade');
 // app.set('view engine', 'html');
+// app.engine('html', hbs.__express);
+// // app.engine('.html',ejs._express);
+// // app.set('view engine', 'html');
 
-app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
+// app.use(logger('dev'));
+// // app.use(express.json());
+// // app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(bodyParser.urlencoded({
+// 	extended: true
+// }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
+
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
+
+// module.exports = app;
+
+
+var express  = require('express');
+var session  = require('express-session');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var hbs = require('hbs');
+var app      = express();
+var port     = process.env.PORT || 3000;
+
+var passport = require('passport');
+var flash    = require('connect-flash');
+
+require('./config/passport')(passport);
+
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-=======
-app.set('view engine', 'jade');
+app.use(bodyParser.json());
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
->>>>>>> 946ba69aa7bf59bdd83b9ce8b226ee056839f5a3
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'html');
+app.engine('html', hbs.__express);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(session({
+	secret: 'vidyapathaisalwaysrunning',
+	resave: true,
+	saveUninitialized: true
+ } ));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+require('./app/routes.js')(app, passport);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+//请求静态文件
+app.use(express.static('public'));
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+app.listen(port);
+console.log('启动在:http://localhost:' + port);
