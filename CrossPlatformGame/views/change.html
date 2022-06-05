@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户修改密码</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div class="login">
+      <!-- <h2>用户登录</h2> -->
+      <h2><span class="fa fa-sign-in"></span>用户登录</h2>
+
+      {{#if message}}
+      <div class="alert alert-danger">{{message}}</div>
+      {{/if}}
+      <form action="/change" method="post">
+        <div class="login_box">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="用户名"
+          />
+        </div>
+
+        <div class="login_box">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="密码"
+          />
+        </div>
+        <a class="sure">
+        <button
+          type="submit"
+          class="btn"
+          style=" border: 0; font-size: 16px"
+        >
+          确认修改
+          <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        </button>
+        <!-- 登录 -->
+        
+      </a>
+      </form>
+      
+      
+
+      <div class="bottom">
+        <p><a href="/profile">返回个人中心</a></p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ranklist.css">
+    <link rel="shortcut icon" href="css/img/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>排行榜</title>
+
+    <style>
+* {
+	/* 初始化 清除页面元素的内外边距 */
+	padding: 0;
+	margin: 0;
+	/* 盒子模型 */
+	box-sizing: border-box;
+	color: #ffffff;
+}
+body {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* 让页面始终占浏览器可视区域总高度 */
+	height: 100vh;
+	 background-image: url("css/img/background.png");
+}
+.login {
+	display: flex;
+	/* 让弹性项目垂直排列 原理是改变弹性盒子的主轴方向 父元素就是弹性盒子 现在改变后的主轴方向是向下了 */
+	flex-direction: column;
+	/* 让弹性项目在交叉轴方向水平居中 现在主轴的方向是向下 交叉轴的方向是与主轴垂直 交叉轴的方向是向右 */
+	align-items: center;
+	width: 480px;
+	padding: 40px;
+	background-color: rgba(0, 0, 0, 0.2);
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+	text-align:center
+	
+}
+
+.login h2 {
+	color: #fff;
+	margin-bottom: 30px;
+}
+
+img[src=""],img:not([src]){
+               opacity: 0;
+               border:none;
+               visibility: hidden;
+               max-width: none;
+           }
+/* .login .table-responsive img{
+    width: 40px;
+    height: 40px;
+} */
+.login .bottom{
+	margin-top: 15px;
+}
+
+.login .bottom a{
+	overflow: hidden;
+	position: relative;
+	padding: 10px 20px;
+	/* width: 100%; */
+	color: #ffffff;
+	/* 取消a表现原有的下划线 */
+	text-decoration: none;
+	/* 同样加个过渡 */
+	transition: all 0.5s;
+	background-color: transparent;
+}
+.login .bottom a:hover {
+	color: #fff;
+	border-radius: 5px;
+	background-color: #b493f1;
+	box-shadow: 0 0 5px #b493f1, 0 0 25px #b493f1, 0 0 50px #b493f1,
+		0 0 100px #b493f1;
+}
+    </style>
+</head>
+
+<script src="/code/chapter/16_game.js"></script>
+<script src="code/levels.js"></script>
+<!-- jquery模块 -->
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+
+<body>
+    <div class="login">
+      <!-- <h2>用户登录</h2> -->
+      <h2><span class="fa fa-sign-in"></span>排行榜</h2>
+
+      {{#if message}}
+      <div class="alert alert-danger">{{message}}</div>
+      {{/if}}
+      <div class="table-responsive">
+        <table class="table">
+          <caption></caption>
+          <thead>
+            <tr>
+                <th>排名</th>
+                <th>用户ID</th>
+                <th>用户头像</th>
+                <th>用户名</th>
+                <th>获得的分数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="n1">
+                <td>No.1</td>
+                <td>{{user1.id}}</td>
+                <td><img src="{{user1.imgurl}}" alt="" style="width: 25px; height: 25px; margin-left: 18px;"/></td>
+                <td>{{user1.username}}</td>
+                <td>{{user1.score}}</td>
+            </tr>
+            <tr id="n2">
+                <td>No.2</td>
+                <td>{{user2.id}}</td>
+                <td><img src="{{user2.imgurl}}" alt="" style="width: 25px; height: 25px; margin-left: 18px;"/></td>
+                <td>{{user2.username}}</td>
+                <td>{{user2.score}}</td>
+            </tr>
+            <tr id="n3">
+                <td>No.3</td>
+                <td>{{user3.id}}</td>
+                <td><img src="{{user3.imgurl}}" alt="" style="width: 25px; height: 25px; margin-left: 18px;"</td>
+                <td>{{user3.username}}</td>
+                <td>{{user3.score}}</td>
+            </tr>
+            <tr>
+                <td>No.4</td>
+                <td>{{user4.id}}</td>
+                <td><img src="{{user4.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;"/></td>
+                <td>{{user4.username}}</td>
+                <td>{{user4.score}}</td>
+            </tr>
+            <tr>
+                <td>No.5</td>
+                <td>{{user5.id}}</td>
+                <td><img src="{{user5.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;" /></td>
+                <td>{{user5.username}}</td>
+                <td>{{user5.score}}</td>
+            </tr>
+            <tr>
+                <td>No.6</td>
+                <td>{{user6.id}}</td>
+                <td><img src="{{user6.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;" /></td>
+                <td>{{user6.username}}</td>
+                <td>{{user6.score}}</td>
+            </tr>
+            <tr>
+                <td>No.7</td>
+                <td>{{user7.id}}</td>
+                <td><img src="{{user7.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;" /></td>
+                <td>{{user7.username}}</td>
+                <td>{{user7.score}}</td>
+            </tr>
+            <tr>
+                <td>No.8</td>
+                <td>{{user8.id}}</td>
+                <td><img src="{{user8.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;" /></td>
+                <td>{{user8.username}}</td>
+                <td>{{user8.score}}</td>
+            </tr>
+            <tr>
+                <td>No.9</td>
+                <td>{{user9.id}}</td>
+                <td><img src="{{user9.imgurl}}" alt=""  style="width: 25px; height: 25px; margin-left: 18px;" /></td>
+                <td>{{user9.username}}</td>
+                <td>{{user9.score}}</td>
+            </tr>
+            <tr>
+                <td>No.10</td>
+                <td>{{user10.id}}</td>
+                <td><img src="{{user10.imgurl}}" alt="" style="width: 25px; height: 25px; margin-left: 17px;" /></td>
+                <td>{{user10.username}}</td>
+                <td>{{user10.score}}</td>
+            </tr>
+        </tbody>
+        </table>
+      </div>
+      
+      
+
+      <div class="bottom">
+        <a href="/game" class="btn btn-default btn-game" id="button-1">开始游戏</a>
+  <a href="/profile" class="btn btn-default btn-Score"id="button-2">返回菜单</a>
+      </div>
+    </div>
+  </body>
+
+</html>

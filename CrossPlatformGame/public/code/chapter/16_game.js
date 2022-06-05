@@ -353,7 +353,18 @@ async function runGame(plans, Display) {
   for (let level = 0; level < plans.length;) {
     let status = await runLevel(new Level(plans[level]),
                                 Display);
-    if (status == "won") level++;
+    // if (status == "won") level++;
+    if (status == "won") {
+      level++;
+      var username = document.getElementById('username').innerText;
+      var data = { "user": username,"score": level * 10 };
+      // alert("恭喜通过第"+level+"关，进入下一关！");
+      $.ajax({
+        url: '/RankingList',//发送请求的地址。
+        type: 'post', //请求方式(post或get)默认为get
+        data: data,
+      });
+    }
   }
   console.log("You've won!");
 }

@@ -1,4 +1,6 @@
-.background    { background: rgb(52, 166, 251);
+.background    { background: #b493f1;
+  /* background-image: url("img/gamebg.png");
+  background-size: 100% 100%; */
                  table-layout: fixed;
                  border-spacing: 0;   }
 .background td { padding: 0;          }
@@ -11,8 +13,8 @@
 
 .game {
   overflow: hidden;
-  max-width: 600px;
-  max-height: 450px;
+  max-width: 100%;
+  max-height: 800px;
   position: relative;
 }
 

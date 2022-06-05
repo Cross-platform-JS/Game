@@ -1,53 +1,78 @@
+<html lang="zh-ch">
 <head>
-  <style type="text/css">
-  .row{
-      width: 100%;
-  }
-  .col-sm-6{
-      left: 10%;
-      width: 80%;
-      margin: auto;
-  }
-  .select-box{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  #button-1{
-     left: 30%;
-  }
-  .well-1,h3,p{
-      text-align: center;
-  }
-  h1{
-      margin-top: -100px;
-  }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="shortcut icon" href="css/img/logo.jpg" type="image/x-icon">
+    <title>登录成功</title>
 </head>
 
-<div class="page-header text-center" id="title">
-  <h1><span class="fa fa-check-square"></span> 登录成功</h1>
-</div>
+<script src="/code/chapter/16_game.js"></script>
+<script src="code/levels.js"></script>
+<!-- jquery模块 -->
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
 
-<div class="row">
-  <div class="col-sm-6">
-      <div class="well" id="well-1">
-          <h3><span class="fa fa-user"></span>用户信息</h3>
-
-          <p>
+  <div class="bg">
+    <div class="proflieCard">
+        <div class="logo1">
+            <img src="{{user.imgurl}}" alt=""  class="logo2" onerror="this.src='css/img/logo.jpg';this.οnerrοr=null;">
+        </div>
+        <div class="choose">
+            <form action="/editUserImg" method="post" enctype="multipart/form-data">
+                <input id="files" type="file" name="file" multiple /> <!-- 这里的multiple属性是允许多文件上传的，单文件上传可以不写此属性（最好都写上）-->
+                <input type="submit" value="上传"/>
+            </form>
+        </div>
+        
+        <p class="name">登录成功</p>
+        
+        <div class="sloganp" id="sloganp">
+            <p class="sloganp2" id="sloganp2"><strong>用户名</strong>: {{user.username}}</p>
+            <p class="sloganp3" id="sloganp3">
               <strong>id</strong>: {{user.id}}<br>
-              <strong>用户名</strong>: {{user.username}}<br>
-              <!-- <strong>密码</strong>: {{user.password}}<br> -->
               <strong>分数</strong>: {{user.score}}
           </p>
+        </div>
+        <div class="buttons">
+            <button class="button1">
+              <a href="/game" class="btn btn-default btn-game" id="button-1">进入游戏</a>
+            </button>
+            <button class="button1">
+              <a href="/RankingList" class="btn btn-default btn-Score"id="button-2">排行榜</a>
+            </button>
+            <button class="button1">
+              <a href="/logout" class="btn btn-default btn-Score">退出游戏</a>
+            </button>
+            <button class="button1">
+              <a href="/cancel" class="btn btn-default btn-Score">注销账户</a>
+            </button>
+            <!-- <button class="button1">
+              <a href="/change" class="btn btn-default btn-Score">修改密码</a>
+            </button> -->
+        </div>
 
-      </div>
-  </div>
+        <footer class="footer">
+            <p class="footer2">Openned in <a target="_blank" href="https://github.com/Cross-platform-JS/Game">Github</a></p>
 
+            <p class="footer2">&copy2022 Cross-platform-JS &nbsp 素材来源 网络 &nbsp 作者 Cross-platform-JS</p>
+        </footer>
+
+    </div>
+
+    
 </div>
-<div class="select-box">
-  <a href="/game" class="btn btn-default btn-game" id="button-1">进入游戏</a>
-  <a href="/RankingList" class="btn btn-default btn-Score"id="button-2">排行榜</a>
-  <a href="/logout" class="btn btn-default btn-Score">注销</a>
-</div>
+
+
+
+<!-- <img src="img/lihui.texb" class="lihui" id="lihui" alt=""> -->
+<div class="background" id="background"></div>
+<div class="yinghua" id="yinghua"></div>
+<div class="background2" id="background2"></div>
+
+
+
+  
+</body>
+
+</html>
